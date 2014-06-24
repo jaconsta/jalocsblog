@@ -1,0 +1,9 @@
+{% extends "main.html" %}
+{% block content %}
+    <div class="topic_header background_living" style="background-color:{{ category.color }}; color:rgb(241,232,212);"> <h2>{{ category}}</h2> </div>
+    {% for post in posts %}
+        <div class="resume_boxes">
+            <div class="boxes_content living"><a href="{% url 'post_content' post.category.name post.id %}"><h3>{{ post.title }}</h3><p>{{ post.subtitle }}</p></a></div>
+        </div>
+    {% endfor %}
+{% endblock %}

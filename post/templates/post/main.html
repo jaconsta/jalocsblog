@@ -1,0 +1,17 @@
+{% include 'post/header.html' %}
+<div id="content">
+{% block content %}
+    {% for categ in posts %}
+    <div class="topic_header header_living" style="border-bottom-color:{{ categ.categ.color }}; color:{{ categ.categ.color }};"><a href="{% url 'category_resume' categ.categ.name%}"> <h2>{{ categ.categ.name }}</h2></a> </div>
+        {% for publics in categ.posts %}
+        <div class="resume_boxes">
+            <div class="boxes_content living"><a href="{% url 'post_content' categ.categ.name publics.id %}"><h3>{{ publics.title }}</h3><p>{{ publics.subtitle }}</p></a></div>
+        </div>
+        {% empty %}
+        <div class="resume_boxes"><h3>Excuse us.<br />There's currently no item for this topic.</h3></div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+{% endblock %}
+</div>
+{% include 'post/footer.html' %}
