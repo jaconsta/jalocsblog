@@ -1,6 +1,7 @@
 #-*- coding: utf-8 -*-
 from django.db import models
 from django.contrib.auth.models import User
+from tinymce import models as tinymce_models
 
 class MainCategoriesManager(models.Manager):
     def get_queryset(self):
@@ -31,7 +32,7 @@ class Post(models.Model):
     title = models.CharField('Título', max_length = 140)
     headimg = models.ImageField('Header Image', upload_to = '/static/img/posts/', null = True, blank = True)
     resume = models.CharField('Resume text', max_length = 250, null = True, blank = True)
-    body = models.TextField('Post body')
+    body = tinymce_models.HTMLField() 
     author = models.ForeignKey(User)
     newdate = models.DateTimeField('Creation date', auto_now_add = True)
     postdate = models.DateTimeField('Publish date', auto_now_add = True)
