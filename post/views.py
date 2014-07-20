@@ -21,6 +21,6 @@ def getCategoryResume(request, category, page = 1):
     return render(request, 'post/categories.html', {'categories':Categories.main_objects.all(), 'category':categ, 'posts':posts})
 
 def getPostContent(request, category, post_id):
-    get_object_or_404(Categories, name = category) #Verify that the category exists
+    categ = get_object_or_404(Categories, name = category) #Verify that the category exists
     post = get_object_or_404(Post, pk=post_id)
     return render(request, 'post/post.html', {'categories':Categories.main_objects.all(), 'category':categ,'post':post, })
